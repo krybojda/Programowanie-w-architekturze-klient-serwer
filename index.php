@@ -9,13 +9,14 @@
   </head>
   <body>
     <div class="sidenav">
-      <a href="index.php"><img src="logo1.png"></a>
-      <a href="index.php?typ=kardiologia">Kardiologia</a>
-      <a href="index.php?typ=neurologia">Neurologia</a>
-      <a href="index.php?typ=okulistyka">Okulistyka</a>
-      <a href="index.php?typ=pediatria">Pediatria</a>
-      <a href="index.php?typ=alergologia">Alergologia</a>
-      <a href="zamowienia.php">Zamówienia</a>
+      <a href="index.php"><img src="logo.png"></a>
+	  <hr>
+      <a href="index.php?typ=Kardiologia">Kardiologia</a>
+      <a href="index.php?typ=Neurologia">Neurologia</a>
+      <a href="index.php?typ=Okulistyka">Okulistyka</a>
+      <a href="index.php?typ=Pediatria">Pediatria</a>
+      <a href="index.php?typ=Alergologia">Alergologia</a>
+      <a href="Rezerwacje.php">Rezerwacje</a>
       <a href="koszyk.php">Koszyk</a>
       <?php
       session_start();
@@ -83,7 +84,9 @@
               }
           }
           else{
-            echo "<h3>Witamy na stronie głównej naszlekarz!</h3>";
+            echo "<h1><center>Witamy na stronie głównej naszlekarz!</center></h1>";
+			echo "<br>";
+			echo '<center><div id="gif"><img src="sg.gif"></a></div></center>';
           }
          ?>
          <script type="text/javascript">
