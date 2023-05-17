@@ -1,7 +1,7 @@
 <?php
 session_start();
 $con = mysqli_connect("localhost","root","","naszlekarz");
-$query = mysqli_query($con,"SELECT id_zamowienia FROM zamowienia");
+$query = mysqli_query($con,"SELECT id_Rezerwacje FROM Rezerwacje");
 $last_order = rand(1000000,9999999);
 $suma = 0;
 for($i=0;$i<count($_SESSION["koszyk"]);$i++){
@@ -20,7 +20,7 @@ for($i=0;$i<count($_SESSION["koszyk"]);$i++){
     $query = mysqli_query($con,$sql);
   }
   $iduser = $_SESSION['iduser'];
-  $sql = "INSERT INTO zamowienia(id_zamowienia,id_prod,tabela,nazwa,cena,suma,iduser) VALUES ('$last_order','$id','$tabela','$nazwa','$cena','$suma','$iduser')";
+  $sql = "INSERT INTO Rezerwacje(id_Rezerwacje,id_prod,tabela,nazwa,cena,suma,iduser) VALUES ('$last_order','$id','$tabela','$nazwa','$cena','$suma','$iduser')";
   $query = mysqli_query($con,$sql);
 }
 unset($_SESSION["koszyk"]);
