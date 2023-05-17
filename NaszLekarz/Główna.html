@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Strona Główna</title>
+    <link rel="stylesheet" href="css.css">
+
+  </head>
+  <body>
+    <header>
+      <h1>Nasz Lekarz</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Strona główna</a></li>
+        <li><a href="#">Rezerwacja wizyty</a></li>
+        <li><a href="#">Opinie</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Strona Główna</h1>
+      <h2>Opinie pacjentów</h2>
+
+      <form id="filter-form">
+        <label for="specialization">Specjalizacja:</label>
+        <select name="specialization" id="specialization">
+          <option value="">-- Wybierz specjalizację --</option>
+          <option value="Dowolna">Dowolna</option>
+          <option value="Specjalizacja 1">Specjalizacja 1</option>
+          <option value="Specjalizacja 2">Specjalizacja 2</option>
+          <option value="Specjalizacja 3">Specjalizacja 3</option>
+        </select>
+      </form>
+
+      <table id="opinions-table">
+        <tr>
+          <th>Lekarz</th>
+          <th>Data</th>
+          <th>Opinia</th>
+        </tr>
+        <tr data-specialization="Specjalizacja 1">
+          <td><a href="lekarz-jan-kowalski.html">Dr Jan Kowalski</a></td>
+          <td>01/05/2023</td>
+          <td>Profesjonalne podejście do pacjenta. Polecam!</td>
+        </tr>
+        <tr data-specialization="Specjalizacja 2">
+          <td><a href="lekarz-maria-nowak.html">Dr Maria Nowak</a></td>
+          <td>02/05/2023</td>
+          <td>Dobra komunikacja i skuteczne leczenie.</td>
+        </tr>
+        <tr data-specialization="Specjalizacja 3">
+          <td><a href="lekarz-piotr-wisniewski.html">Dr Piotr Wiśniewski</a></td>
+          <td>03/05/2023</td>
+          <td>Świetny lekarz, duża wiedza i doświadczenie.</td>
+        </tr>
+        <tr data-specialization="Specjalizacja 1">
+          <td><a href="lekarz-anna-kaczmarek.html">Dr Anna Kaczmarek</a></td>
+          <td>04/05/2023</td>
+          <td>Przyjazna atmosfera i profesjonalne podejście.</td>
+        </tr>
+      </table>
+
+      <script>
+        document.getElementById("specialization").addEventListener("change", function () {
+          var selectedValue = this.value;
+          var rows = document.getElementById("opinions-table").getElementsByTagName("tr");
+
+          for (var i = 1; i < rows.length; i++) {
+            var specialization = rows[i].getAttribute("data-specialization");
+            if (selectedValue === "" || specialization === selectedValue) {
+              rows[i].style.display = "";
+            } else {
+              rows[i].style.display = "none";
+            }
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>
