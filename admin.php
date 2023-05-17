@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="pl" dir="ltr">
+<html lang="" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css.css">
     <script src="cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Strona Główna</title>
+  </head>
   <body>
     <div class="sidenav">
-      <a href="index.php"><img src="logo1.png"></a>
+      <a href="index.php"><img src="logo.png"></a>
       <h3>Admin</h3>
-      <a href="admin.php?typ=kardiologia">Termin Kardiologia</a>
-      <a href="admin.php?typ=neurologia">Termin Neurologia</a>
-      <a href="admin.php?typ=okulistyka">Termin Okulistyka</a>
-      <a href="admin.php?typ=pediatria">Termin Pediatria</a>
-      <a href="admin.php?typ=alergologia">Termin Alergologia</a>
-      <a href="admin.php?typ=zamowieniauserow">Terminy pacjentów</a>
+      <a href="admin.php?typ=Kardiologia">Dodaj Kardiologia</a>
+      <a href="admin.php?typ=Neurologia">Dodaj Neurologia</a>
+      <a href="admin.php?typ=Okulistyka">Dodaj Okulistyka</a>
+      <a href="admin.php?typ=Pediatria">Dodaj Pediatria</a>
+      <a href="admin.php?typ=Alergologia">Dodaj Alergologia</a>
+      <a href="admin.php?typ=Rezerwacjeuserow">Rezerwacje użytkowników</a>
       <h3>User</h3>
-      <a href="index.php?typ=kardiologia">Kardiologia</a>
-      <a href="index.php?typ=neurologia">Neurologia</a>
-      <a href="index.php?typ=okulistyka">Okulistyka</a>
-      <a href="index.php?typ=pediatria">Pediatria</a>
-      <a href="index.php?typ=alergologia">Alergologia</a>
-      <a href="zamowienia.php">Zamówienia</a>
+      <a href="index.php?typ=Kardiologia">Kardiologia</a>
+      <a href="index.php?typ=Neurologia">Neurologia</a>
+      <a href="index.php?typ=Okulistyka">Okulistyka</a>
+      <a href="index.php?typ=Pediatria">Pediatria</a>
+      <a href="index.php?typ=Alergologia">Alergologia</a>
+      <a href="Rezerwacje.php">Rezerwacje</a>
       <a href="koszyk.php">Koszyk</a>
       <?php
       session_start();
@@ -57,7 +58,7 @@
             $typ = $_GET["typ"];
             echo '<h1 style="text-align: center">' . ucwords($typ) . "</h1>";
             $con = mysqli_connect("localhost","root","","naszlekarz");
-            if($typ!="zamowieniauserow"){
+            if($typ!="Rezerwacjeuserow"){
               echo "<form action='dodaj.php?typ=".$typ."' method='post'>
               <table>
                 <tr><td>Nazwa:</td><td><input type='text' name='nazwa'></td></tr>
@@ -69,13 +70,13 @@
                 <input type='submit'>
               </form>";
             }
-            else if($typ=="zamowieniauserow"){
+            else if($typ=="Rezerwacjeuserow"){
               $con = mysqli_connect("localhost","root","","naszlekarz");
               $sql = "SELECT * FROM user";
               $query = mysqli_query($con,$sql);
               if (mysqli_num_rows($query) > 0) {
                 echo '<table class="jq-toggle-table table table-condensed table-striped">';
-                echo "<tr><th>ID Użytkownika</th><th>Login</th><th>Email</th><th>Typ konta</th><th>Zamówienia</th></tr>";
+                echo "<tr><th>ID Użytkownika</th><th>Login</th><th>Email</th><th>Typ konta</th><th>Rezerwacje</th></tr>";
                   while($row = mysqli_fetch_assoc($query)) {
                           echo "<tr>";
                           echo "<td class='text-center'>" .  $row["id"] . "</td>";
@@ -87,7 +88,7 @@
                           else{
                             echo "<td class='text-center'>Użytkownik</td>";
                           }
-                          echo "<td class='text-center'><button onclick='url(" . $row["id"] . ")'>Zamówienia</button></td>";
+                          echo "<td class='text-center'><button onclick='url(" . $row["id"] . ")'>Rezerwacje</button></td>";
                           echo "</td>";
                   }
                   echo "</table>";
@@ -100,7 +101,7 @@
          ?>
          <script>
              function url(id){
-              var url = "zamowieniauzytkownika.php?id=" + id;
+              var url = "Rezerwacjeuzytkownika.php?id=" + id;
               window.location = url;
            }
         </script>
