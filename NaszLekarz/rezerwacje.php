@@ -90,7 +90,7 @@
     		echo "<td>" .  $row["Imie"] . "</td>";
     		echo "<td>" .  $row["Nazwisko"] . "</td>";
     		echo "<td>" .  $row["data"] . "</td>";
-    		echo "<td>" .  $row["godzina"] . "</td>";
+    		echo '<td>' . date("H:i", strtotime($row["godzina"])) . '</td>';
     		echo "<td>" .  $row["nr_gabinetu"] . "</td>";
         echo '<td id="button"> <button class="button" name="Zarezerwuj" type="submit">Zarezerwuj</button> </td>';
     		echo "</tr>";
@@ -125,7 +125,7 @@
     		echo "<td>" .  $row["imie"] . "</td>";
     		echo "<td>" .  $row["nazwisko"] . "</td>";
     		echo "<td>" .  $row["data"] . "</td>";
-    		echo "<td>" .  $row["godzina"] . "</td>";
+    		echo '<td>' . date("H:i", strtotime($row["godzina"])) . '</td>';
     		echo "<td>" .  $row["nr_gabinetu"] . "</td>";
     		echo "</tr>";
     	}
