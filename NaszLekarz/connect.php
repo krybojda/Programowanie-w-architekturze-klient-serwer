@@ -3,21 +3,21 @@
 
 <?php
 
-$host = 'localhost'; 
-$user = 'root';  
-$pass = ''; 
+$host = 'localhost';
+$user1 = 'root';
+$pass = '';
 $name = 'naszlekarz';
 
 
 
-$con = @mysqli_connect($host,$user,$pass,$name);
+$con = @mysqli_connect($host,$user1,$pass,$name);
 
 if(!$con){
 	echo "Error: " . mysqli_connect_error();
 	exit();
 }
 else {
-	echo "Połączono z bazą";
+	//echo "Połączono z bazą";
 }
 
 
