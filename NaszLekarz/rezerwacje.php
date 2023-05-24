@@ -3,6 +3,11 @@
   <head>
     <title>Strona Główna</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+           function url(idrow, imie, nazwisko, data, godzina, nrgabinetu, user, typ){
+              window.location = "rezerwacja.php?id=" + idrow + "&imie=" + imie + "&nazwisko=" + nazwisko + "&data=" + data + "&godzina=" + godzina + "&nrgabinetu=" + nrgabinetu + "&user=" + user + "&typ=" + typ;
+           }
+         </script>
   </head>
 
   <body>
@@ -92,14 +97,16 @@
     		echo "<td>" .  $row["data"] . "</td>";
     		echo '<td>' . date("H:i", strtotime($row["godzina"])) . '</td>';
     		echo "<td>" .  $row["nr_gabinetu"] . "</td>";
-        echo '<td id="button"> <button class="button" name="Zarezerwuj" type="submit">Zarezerwuj</button> </td>';
+        //echo '<td id="button"> <button type="submit" class="button" name="zarezerwuj">Zarezerwuj</button> </td>';
+        echo "<td class='text-center'><button onclick='url(" . $row['id'] . ",\"" . $row["Imie"] . "\",\"" . $row["Nazwisko"] . "\",\"" . $row["data"] . "\",\"" . $row["godzina"] . "\",\"" . $row["nr_gabinetu"] . "\",\"" . $user . "\",\"" . $typ . "\"". ")'>Zarezerwuj</button></td>";
     		echo "</tr>";
-    	}
+      }
     	echo"</table>";
-    	}
     	 }
-
+    	 }
+      
       ?>
+      
       <br>
       <h1>Moje Rezerwacje</h1>
       <?php
@@ -134,7 +141,7 @@
 
 
       ?>
-      <script>
+      <!-- <script>
         document.getElementById("specialization").addEventListener("change", function () {
           var selectedValue = this.value;
           var rows = document.getElementById("opinions-table").getElementsByTagName("tr");
@@ -148,7 +155,7 @@
             }
           }
         });
-      </script>
+      </script> -->
     </main>
   </body>
 </html>
