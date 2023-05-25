@@ -1,9 +1,9 @@
 <?php
+include 'connect.php';
   if(isSet($_POST['username'])&&isSet($_POST['password'])&&isSet($_POST['email'])){
       $user = $_POST['username'];
       $pass = md5($_POST['password']);
       $email = $_POST['email'];
-      $con = mysqli_connect('localhost','root','','naszlekarz');
       $query = mysqli_query($con,"select count(login) FROM user WHERE login='$user'");
       $row = mysqli_fetch_array($query);
       $exists = $row[0];

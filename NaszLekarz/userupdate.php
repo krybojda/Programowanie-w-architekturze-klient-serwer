@@ -7,11 +7,11 @@
   </head>
   <body>
     <?php
+	include 'connect.php';
     session_start();
     $login = $_SESSION["login"];
     $email = trim($_POST["email"]);
     $password = md5(trim($_POST["password"]));
-    $con = mysqli_connect("localhost", "root", "", "naszlekarz");
     if($con === false){
         die("ERROR: Could not connect. " . mysqli_connect_error());
     }

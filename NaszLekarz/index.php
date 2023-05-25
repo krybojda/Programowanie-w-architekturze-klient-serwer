@@ -14,12 +14,13 @@
         <li><a href="rezerwacje.php">Rezerwacja wizyty</a></li>
         <li><a href="NasiLekarze.php">Nasi Lekarze</a></li>
         <li><a href="opinie.php">Opinie</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="kontakt.php">Kontakt</a></li>
         <li><a href='user.php'>Użytkownik</a></li>
         <li><a href="wyloguj.php">Wyloguj</a></li>
       </ul>
     </nav>
     <?php
+	include 'connect.php';
     session_start();
       if(isSet($_SESSION["login"])){
         $user = $_SESSION["login"];
@@ -30,7 +31,6 @@
               </script>';
       }
     if(isSet($_SESSION["login"])){
-      $con = mysqli_connect("localhost","root","","naszlekarz");
       $query = mysqli_query($con,"SELECT * FROM user WHERE login=\"$user\"");
       if (mysqli_num_rows($query) > 0) {
           while($row = mysqli_fetch_assoc($query)) {

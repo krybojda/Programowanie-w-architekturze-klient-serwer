@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Strona Główna</title>
+    <title>Opinie</title>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
@@ -15,12 +15,13 @@
         <li><a href="rezerwacje.php">Rezerwacja wizyty</a></li>
         <li><a href="NasiLekarze.php">Nasi Lekarze</a></li>
         <li><a href="opinie.php">Opinie</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="kontakt.php">Kontakt</a></li>
         <li><a href='user.php'>Użytkownik</a></li>
         <li><a href="wyloguj.php">Wyloguj</a></li>
       </ul>
     </nav>
     <?php
+	include 'connect.php';
     session_start();
       if(isSet($_SESSION["login"])){
         $user = $_SESSION["login"];
@@ -31,7 +32,6 @@
               </script>';
       }
     if(isSet($_SESSION["login"])){
-      $con = mysqli_connect("localhost","root","","naszlekarz");
       $query = mysqli_query($con,"SELECT * FROM user WHERE login=\"$user\"");
       if (mysqli_num_rows($query) > 0) {
           while($row = mysqli_fetch_assoc($query)) {
@@ -66,12 +66,14 @@
 
     	echo"</tr>";
 
+
+		
     	while($row = mysqli_fetch_assoc($query)) {
     		echo "<tr>";
     		echo "<td>" .  $row["imie"] . "</td>";
     		echo "<td>" .  $row["nazwisko"] . "</td>";
         echo "<td>" .  $row["data"] . "</td>";
-        echo "<td>" .  $row["ocena"] . "</td>";
+        echo "<td>" .max(1, min(5, $row["ocena"])). "</td>";
         echo "<td>" .  $row["opinia"] . "</td>";
     		echo "</tr>";
       }

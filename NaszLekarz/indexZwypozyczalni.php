@@ -18,6 +18,7 @@
       <a href="zamowienia.php">Zamówienia</a>
       <a href="koszyk.php">Koszyk</a>
       <?php
+	  include 'connect.php';
       session_start();
         if(isSet($_SESSION["login"])){
           $user = $_SESSION["login"];
@@ -28,7 +29,6 @@
                 </script>';
         }
       if(isSet($_SESSION["login"])){
-        $con = mysqli_connect("localhost","root","","naszlekarz");
         $query = mysqli_query($con,"SELECT * FROM user WHERE login=\"$user\"");
         if (mysqli_num_rows($query) > 0) {
             while($row = mysqli_fetch_assoc($query)) {
@@ -45,10 +45,10 @@
     </div>
     <div class="main">
         <?php
+		include 'connect.php';
           if(isSet($_SESSION["login"])&&isSet($_GET["typ"])){
             $typ = $_GET["typ"];
             echo '<h1 style="text-align: center">' . ucwords($typ) . "</h1>";
-            $con = mysqli_connect("localhost","root","","naszlekarz");
             $query = mysqli_query($con, "SELECT * FROM $typ");
             if (mysqli_num_rows($query) > 0) {
               echo '<table class="jq-toggle-table table table-condensed table-striped">';

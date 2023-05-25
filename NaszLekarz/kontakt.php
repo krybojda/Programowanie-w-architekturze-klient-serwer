@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Nasi lekarze</title>
+    <title>Kontakt</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript">
-           function url(idrow, imie, nazwisko, specjalizacja){
-              window.location = "opinie2.php?id=" + idrow + "&imie=" + imie + "&nazwisko=" + nazwisko + "&specjalizacja=" + specjalizacja ;
-           }
-         </script>
   </head>
 
   <body>
@@ -26,8 +21,8 @@
       </ul>
     </nav>
     <?php
-    session_start();
 	include 'connect.php';
+    session_start();
       if(isSet($_SESSION["login"])){
         $user = $_SESSION["login"];
       }
@@ -50,12 +45,14 @@
     }
     ?>
     <main>
-      <h1>Nasz zespół  </h1>
+      <h1>Kontakt </h1>
+	  <br><br>
+	  <h2>Lista lekarzy</h2>
 
       <?php
       include 'connect.php';
 
-      echo'<br><br><br>';
+
 
 
     	$query = mysqli_query($con, "SELECT * FROM lekarze");
@@ -66,6 +63,9 @@
     		echo"<th>Imie</th>";
     		echo"<th>Nazwisko</th>";
         echo"<th>Specjalizacja</th>";
+        echo"<th>Telefon</th>";
+        echo"<th>E-mail</th>";
+
     	echo"</tr>";
 
     	while($row = mysqli_fetch_assoc($query)) {
@@ -73,9 +73,8 @@
     		echo "<td>" .  $row["imie"] . "</td>";
     		echo "<td>" .  $row["nazwisko"] . "</td>";
         echo "<td>" .  $row["specjalizacja"] . "</td>";
-
-
-        echo "<td id='button'><button  class='button' onclick='url(" . $row['id'] . ",\"" . $row["imie"] . "\",\"" . $row["nazwisko"] . "\",\"" . "\",\"" . $user . "\",\"" .  "\"". ")'>Opinie</button></td>";
+        echo "<td>" .  $row["telefon"] . "</td>";
+        echo "<td>" .  $row["e-mail"] . "</td>";
     		echo "</tr>";
       }
     	echo"</table>";
@@ -84,7 +83,9 @@
 
       ?>
 
-      <br>
+      <br><br><br>
+	  <h2>Kontakt do kliniki</h2>
+	  ...
     </main>
   </body>
 </html>

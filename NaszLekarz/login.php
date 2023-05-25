@@ -2,9 +2,9 @@
 if(isSet($_POST['username'])&&isSet($_POST['password'])){
     session_start();
     $_SESSION["typ_konta"]=NULL;
+	include 'connect.php';
     $user = $_POST['username'];
     $pass = md5($_POST['password']);
-    $con = mysqli_connect('localhost','root','','naszlekarz');
     $query = mysqli_query($con,"select * FROM user WHERE login='$user' && pass='$pass'");
     $row = mysqli_num_rows($query);
     if($row == 1)
