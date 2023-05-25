@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript">
            function url(idrow, imie, nazwisko, data, godzina, nrgabinetu, user, typ){
-              window.location = "rezerwacja.php?id=" + idrow + "&imie=" + imie + "&nazwisko=" + nazwisko + "&data=" + data + "&godzina=" + godzina + "&nrgabinetu=" + nrgabinetu + "&user=" + user + "&typ=" + typ;
+              window.location = "rezerwacja2.php?id=" + idrow + "&imie=" + imie + "&nazwisko=" + nazwisko + "&data=" + data + "&godzina=" + godzina + "&nrgabinetu=" + nrgabinetu + "&user=" + user + "&typ=" + typ;
            }
          </script>
   </head>
@@ -18,7 +18,8 @@
       <ul>
         <li><a href="index.php">Strona główna</a></li>
         <li><a href="rezerwacje.php">Rezerwacja wizyty</a></li>
-        <li><a href="#">Opinie</a></li>
+        <li><a href="NasiLekarze.php">Nasi Lekarze</a></li>
+        <li><a href="opinie.php">Opinie</a></li>
         <li><a href="#">Kontakt</a></li>
         <li><a href='user.php'>Użytkownik</a></li>
         <li><a href="wyloguj.php">Wyloguj</a></li>
@@ -98,15 +99,15 @@
     		echo '<td>' . date("H:i", strtotime($row["godzina"])) . '</td>';
     		echo "<td>" .  $row["nr_gabinetu"] . "</td>";
         //echo '<td id="button"> <button type="submit" class="button" name="zarezerwuj">Zarezerwuj</button> </td>';
-        echo "<td class='text-center'><button onclick='url(" . $row['id'] . ",\"" . $row["Imie"] . "\",\"" . $row["Nazwisko"] . "\",\"" . $row["data"] . "\",\"" . $row["godzina"] . "\",\"" . $row["nr_gabinetu"] . "\",\"" . $user . "\",\"" . $typ . "\"". ")'>Zarezerwuj</button></td>";
+        echo "<td id='button'><button  class='button' onclick='url(" . $row['id'] . ",\"" . $row["Imie"] . "\",\"" . $row["Nazwisko"] . "\",\"" . $row["data"] . "\",\"" . $row["godzina"] . "\",\"" . $row["nr_gabinetu"] . "\",\"" . $user . "\",\"" . $typ . "\"". ")'>Zarezerwuj</button></td>";
     		echo "</tr>";
       }
     	echo"</table>";
     	 }
     	 }
-      
+
       ?>
-      
+
       <br>
       <h1>Moje Rezerwacje</h1>
       <?php
@@ -141,21 +142,8 @@
 
 
       ?>
-      <!-- <script>
-        document.getElementById("specialization").addEventListener("change", function () {
-          var selectedValue = this.value;
-          var rows = document.getElementById("opinions-table").getElementsByTagName("tr");
 
-          for (var i = 1; i < rows.length; i++) {
-            var specialization = rows[i].getAttribute("data-specialization");
-            if (selectedValue === "" || specialization === selectedValue) {
-              rows[i].style.display = "";
-            } else {
-              rows[i].style.display = "none";
-            }
-          }
-        });
-      </script> -->
+
     </main>
   </body>
 </html>

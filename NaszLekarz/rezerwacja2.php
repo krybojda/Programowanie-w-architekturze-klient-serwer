@@ -9,8 +9,8 @@ $typ=$_GET["typ"];
            $query = mysqli_query($con,$sql);
     }
 
-        
-        
+
+
    echo '<script type="text/javascript">
    window.location = "rezerwacje.php";
    </script>';

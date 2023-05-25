@@ -12,7 +12,8 @@
       <ul>
         <li><a href="#">Strona główna</a></li>
         <li><a href="rezerwacje.php">Rezerwacja wizyty</a></li>
-        <li><a href="#">Opinie</a></li>
+        <li><a href="NasiLekarze.php">Nasi Lekarze</a></li>
+        <li><a href="opinie.php">Opinie</a></li>
         <li><a href="#">Kontakt</a></li>
         <li><a href='user.php'>Użytkownik</a></li>
         <li><a href="wyloguj.php">Wyloguj</a></li>
