@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2023, 23:12
--- Wersja serwera: 10.4.13-MariaDB
--- Wersja PHP: 7.4.8
+-- Generation Time: Maj 31, 2023 at 09:36 PM
+-- Wersja serwera: 10.4.28-MariaDB
+-- Wersja PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `naszlekarz`
+-- Database: `naszlekarz`
 --
 
 -- --------------------------------------------------------
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alergologia` (
   `id` int(11) NOT NULL,
-  `Imie` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `Nazwisko` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `Imie` varchar(20) NOT NULL,
+  `Nazwisko` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `nr_gabinetu` int(4) NOT NULL,
   `godzina` time(4) NOT NULL
@@ -44,8 +44,8 @@ CREATE TABLE `alergologia` (
 
 CREATE TABLE `kardiologia` (
   `id` int(11) NOT NULL,
-  `Imie` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `Nazwisko` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `Imie` varchar(20) NOT NULL,
+  `Nazwisko` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `nr_gabinetu` int(4) NOT NULL,
   `godzina` time(4) NOT NULL
@@ -59,15 +59,15 @@ CREATE TABLE `kardiologia` (
 
 CREATE TABLE `lekarze` (
   `id` int(11) NOT NULL,
-  `imie` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
-  `nazwisko` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
-  `specjalizacja` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+  `imie` varchar(30) NOT NULL,
+  `nazwisko` varchar(30) NOT NULL,
+  `specjalizacja` varchar(30) NOT NULL,
   `telefon` int(6) NOT NULL,
-  `e-mail` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL
+  `e-mail` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `lekarze`
+-- Dumping data for table `lekarze`
 --
 
 INSERT INTO `lekarze` (`id`, `imie`, `nazwisko`, `specjalizacja`, `telefon`, `e-mail`) VALUES
@@ -83,15 +83,15 @@ INSERT INTO `lekarze` (`id`, `imie`, `nazwisko`, `specjalizacja`, `telefon`, `e-
 
 CREATE TABLE `neurologia` (
   `id` int(11) NOT NULL,
-  `Imie` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `Nazwisko` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `Imie` varchar(20) NOT NULL,
+  `Nazwisko` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `nr_gabinetu` int(4) NOT NULL,
   `godzina` time(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `neurologia`
+-- Dumping data for table `neurologia`
 --
 
 INSERT INTO `neurologia` (`id`, `Imie`, `Nazwisko`, `data`, `nr_gabinetu`, `godzina`) VALUES
@@ -106,8 +106,8 @@ INSERT INTO `neurologia` (`id`, `Imie`, `Nazwisko`, `data`, `nr_gabinetu`, `godz
 
 CREATE TABLE `okulistyka` (
   `id` int(11) NOT NULL,
-  `Imie` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `Nazwisko` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `Imie` varchar(20) NOT NULL,
+  `Nazwisko` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `nr_gabinetu` int(4) NOT NULL,
   `godzina` time(4) NOT NULL
@@ -121,20 +121,23 @@ CREATE TABLE `okulistyka` (
 
 CREATE TABLE `opinie` (
   `id` int(11) NOT NULL,
-  `imie` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
-  `nazwisko` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+  `id_lekarza` int(20) NOT NULL,
+  `imie` varchar(30) NOT NULL,
+  `nazwisko` varchar(30) NOT NULL,
   `data` date NOT NULL,
-  `opinia` text COLLATE utf8mb4_polish_ci NOT NULL,
+  `opinia` text NOT NULL,
   `ocena` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `opinie`
+-- Dumping data for table `opinie`
 --
 
-INSERT INTO `opinie` (`id`, `imie`, `nazwisko`, `data`, `opinia`, `ocena`) VALUES
-(1, 'Michał', 'Kamiński', '2023-05-02', 'Świetny lekarz, super wszystko i tak dalej', 0),
-(3, 'martyna', 'trocka', '2023-05-09', 'Swietny lekarz pomógł mi na wrzody żołądka', 6);
+INSERT INTO `opinie` (`id`, `id_lekarza`, `imie`, `nazwisko`, `data`, `opinia`, `ocena`) VALUES
+(1, 1, 'Michał', 'Kamiński', '2023-05-02', 'Świetny lekarz, super wszystko i tak dalej', 5),
+(5, 2, 'Jakub', 'Szostak', '2023-05-17', 'Zaspał na wizyte nie polecam', 1),
+(6, 1, 'Michał', 'Kamiński', '2023-05-02', 'Nie polecam', 1),
+(7, 1, 'Michał', 'Kamiński', '2023-05-02', 'frajer denty', 7);
 
 -- --------------------------------------------------------
 
@@ -144,15 +147,15 @@ INSERT INTO `opinie` (`id`, `imie`, `nazwisko`, `data`, `opinia`, `ocena`) VALUE
 
 CREATE TABLE `pediatria` (
   `id` int(11) NOT NULL,
-  `Imie` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `Nazwisko` varchar(20) COLLATE utf8_polish_ci NOT NULL,
+  `Imie` varchar(20) NOT NULL,
+  `Nazwisko` varchar(20) NOT NULL,
   `data` date NOT NULL,
   `nr_gabinetu` int(4) NOT NULL,
   `godzina` time(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `pediatria`
+-- Dumping data for table `pediatria`
 --
 
 INSERT INTO `pediatria` (`id`, `Imie`, `Nazwisko`, `data`, `nr_gabinetu`, `godzina`) VALUES
@@ -166,16 +169,16 @@ INSERT INTO `pediatria` (`id`, `Imie`, `Nazwisko`, `data`, `nr_gabinetu`, `godzi
 
 CREATE TABLE `rezerwacje` (
   `id` int(20) NOT NULL,
-  `imie` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
-  `nazwisko` varchar(30) COLLATE utf8mb4_polish_ci NOT NULL,
+  `imie` varchar(30) NOT NULL,
+  `nazwisko` varchar(30) NOT NULL,
   `data` date NOT NULL,
   `godzina` time(6) NOT NULL,
   `nr_gabinetu` int(20) NOT NULL,
-  `login` varchar(255) COLLATE utf8mb4_polish_ci NOT NULL
+  `login` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
--- Zrzut danych tabeli `rezerwacje`
+-- Dumping data for table `rezerwacje`
 --
 
 INSERT INTO `rezerwacje` (`id`, `imie`, `nazwisko`, `data`, `godzina`, `nr_gabinetu`, `login`) VALUES
@@ -202,14 +205,14 @@ INSERT INTO `rezerwacje` (`id`, `imie`, `nazwisko`, `data`, `godzina`, `nr_gabin
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `login` varchar(255) COLLATE utf8_polish_ci NOT NULL,
-  `pass` varchar(255) COLLATE utf8_polish_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `typ` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `login`, `pass`, `email`, `typ`) VALUES
@@ -285,55 +288,55 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT dla tabeli `alergologia`
+-- AUTO_INCREMENT for table `alergologia`
 --
 ALTER TABLE `alergologia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT dla tabeli `kardiologia`
+-- AUTO_INCREMENT for table `kardiologia`
 --
 ALTER TABLE `kardiologia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT dla tabeli `lekarze`
+-- AUTO_INCREMENT for table `lekarze`
 --
 ALTER TABLE `lekarze`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT dla tabeli `neurologia`
+-- AUTO_INCREMENT for table `neurologia`
 --
 ALTER TABLE `neurologia`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT dla tabeli `okulistyka`
+-- AUTO_INCREMENT for table `okulistyka`
 --
 ALTER TABLE `okulistyka`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT dla tabeli `opinie`
+-- AUTO_INCREMENT for table `opinie`
 --
 ALTER TABLE `opinie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT dla tabeli `pediatria`
+-- AUTO_INCREMENT for table `pediatria`
 --
 ALTER TABLE `pediatria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT dla tabeli `rezerwacje`
+-- AUTO_INCREMENT for table `rezerwacje`
 --
 ALTER TABLE `rezerwacje`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT dla tabeli `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
