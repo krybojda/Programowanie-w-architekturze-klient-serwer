@@ -67,7 +67,7 @@
     	echo"</tr>";
 
 
-		
+
     	while($row = mysqli_fetch_assoc($query)) {
     		echo "<tr>";
     		echo "<td>" .  $row["imie"] . "</td>";
