@@ -61,22 +61,35 @@
       echo "<h1>" .  $imie ." " .  $nazwisko . "</h1>";
 
       $query = mysqli_query($con, "SELECT * FROM opinie WHERE id_lekarza = $id");
-        if (mysqli_num_rows($query) > 0) {
+        //if (mysqli_num_rows($query) > 0) {
       echo "<br><br><h2>Napisz opinie</h2>";
 
       echo'<form name="komentarz" method="post">';
       echo '  <textarea name="Komentarz" cols="50" rows="10" method="post"></textarea>';
       echo '<div class = "guzik">';
 
+      echo'<select name="Ocena">';
+      echo'<option value="1">1</option>';
+      echo'<option value="2">2</option>';
+      echo'<option value="3">3</option>';
+      echo'<option value="4">4</option>';
+      echo'<option value="5">5</option>';
+      echo'</select>';
+
       echo "<button name = 'wyslij' class='button1' type='submit'>Wyślij</button>";
       echo '</div></form>';
-
         if(isset($_POST['wyslij'])){
+        $ocena = $_POST['Ocena'];
         $kom = $_POST['Komentarz'];
-        mysqli_query($con, "INSERT INTO opinie (id,id_lekarza,imie,nazwisko,data,opinia,ocena) VALUES ('',\"$id\",\"$imie\",\"$nazwisko\",\"$czas\",\"$kom\",3)");
+        mysqli_query($con, "INSERT INTO opinie (id,id_lekarza,imie,nazwisko,data,opinia,ocena) VALUES ('',\"$id\",\"$imie\",\"$nazwisko\",\"$czas\",\"$kom\",\"$ocena\")");
+      echo ' <script>';
+      echo '  if ( window.history.replaceState ) {';
+          echo '  window.history.replaceState( null, null, window.location.href )}';
+          echo 'location.reload()';
+      echo '  </script>';
       }
 
-
+      if (mysqli_num_rows($query) > 0) {
       echo'<table>';
       echo"<tr>";
         echo"<th>Data</th>";
@@ -95,6 +108,7 @@
       echo "<br><br><h2>Brak opinii</h2>";
     }
        ?>
+
        <br>
      </main>
    </body>

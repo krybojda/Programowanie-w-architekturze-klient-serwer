@@ -16,6 +16,8 @@ nav {
   padding: 10px;
 }
 ul {
+  display: flex;
+  justify-content: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -66,13 +68,17 @@ label {
   font-weight: bold;
 }
 input[type="text"],
-select {
+select[name=Specjalizacje]{
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 10px;
+}
+select[name=Ocena]{
+width: 150px;
+padding: 12px;
 }
 input[type="submit"] {
   background-color: #333;
@@ -113,7 +119,7 @@ border: 20px;
 border-color: red;
 padding: 10px;
 text-align: center;
-padding-left: 570px;
+padding-left: 420px;
 }
 
 .button1{
