@@ -84,8 +84,13 @@
       ?>
 
       <br><br><br>
-	  <h2>Kontakt do kliniki</h2>
-	  ...
+      <h1>Kontakt do kliniki</h1>
+	  <p>955900299</p>
+          <h1>Adres:</h1>
+          <p>ul.Piłsudskiego 25</p>
+	  <p>58-500 Jelenia Góra</p>
+          <h1>E-mail:</h1>
+          <p>nasz.lekarz@szpital.pl<p>
     </main>
   </body>
 </html>
