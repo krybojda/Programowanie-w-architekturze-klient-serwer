@@ -84,8 +84,12 @@
       ?>
 
       <br><br><br>
-	  <h2>Kontakt do kliniki</h2>
-	  ...
+	  <h1>Kontakt do kliniki</h1>
+	  <h2>+48955900299</h2>
+          <h1>Adres</h1>
+          <h2>ul.Pilsudskiego 25</h2>
+          <h1>Mail@</h1>
+          <h2>nasz.lekarz@szpital.pl</h2>
     </main>
   </body>
 </html>
